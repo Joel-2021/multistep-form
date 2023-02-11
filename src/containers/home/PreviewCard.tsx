@@ -54,10 +54,13 @@ const PreviewCard: React.FC<{
 
   const context = useContext(DataContext)
   const { state, setState } = useData()
-  // const { requisitionDetails, jobDetails, interviewSettings } = state
-  useEffect(() => {
-    console.log(requisitionDetails, jobDetails, interviewSettings,context)
-  }, [requisitionDetails, jobDetails, interviewSettings]);
+  // useEffect(() => {
+  //   const { requisitionDetails } = state
+  //   const {jobDetails}=state
+  //   const{ interviewSettings}=state
+  //   console.log(requisitionDetails)
+  //   console.log(ref)
+  // }, [state]);
 
 
   return (
@@ -90,14 +93,14 @@ const PreviewCard: React.FC<{
               alignItems="center"
             >
               <Text fontSize="0.9rem" fontWeight="500">
-                {requisitionDetails?.requisitionTitle}
+                {state.requisitionDetails?.requisitionTitle}
               </Text>
               <Flex justifyContent="space-around" alignItems="center">
                 <Text fontSize="0.8rem" mr="0.4rem" fontWeight="200" as="p">
                   OPENINGS
                 </Text>
                 <Text fontSize="1rem" fontWeight="bold" as="span">
-                  {requisitionDetails?.noOfOpenings}
+                  {state.requisitionDetails?.noOfOpenings}
                 </Text>
               </Flex>
             </Flex>
@@ -109,7 +112,7 @@ const PreviewCard: React.FC<{
               title="Urgency"
               value={
                 urgencyOptions.find(
-                  (item) => item?.value === requisitionDetails?.urgency
+                  (item) => item?.value === state.requisitionDetails?.urgency
                 )?.label
               }
             />
@@ -117,22 +120,22 @@ const PreviewCard: React.FC<{
               title="Gender"
               value={
                 genderOptions.find(
-                  (item) => item?.value === requisitionDetails?.gender
+                  (item) => item?.value === state.requisitionDetails?.gender
                 )?.label
               }
             />
           </DataCard>
           <DataCard title="Job Detail">
-            <KeyValue title="Job Title" value={jobDetails?.jobTitle} />
-            <KeyValue title="Job Details" value={jobDetails?.jobDetails} />
-            <KeyValue title="Job Location" value={jobDetails?.jobLocation} />
+            <KeyValue title="Job Title" value={state.jobDetails?.jobTitle} />
+            <KeyValue title="Job Details" value={state.jobDetails?.jobDetails} />
+            <KeyValue title="Job Location" value={state.jobDetails?.jobLocation} />
           </DataCard>
           <DataCard title="Interview Settings">
             <KeyValue
               title="Interview Duration"
               value={
                 interviewDurationOptions.find(
-                  (item) => item?.value === interviewSettings?.interviewDuration
+                  (item) => item?.value === state.interviewSettings?.interviewDuration
                 )?.label
               }
             />
@@ -140,7 +143,7 @@ const PreviewCard: React.FC<{
               title="Interview Language"
               value={
                 interviewLanguageOptions.find(
-                  (item) => item?.value === interviewSettings?.interviewLanguage
+                  (item) => item?.value === state.interviewSettings?.interviewLanguage
                 )?.label
               }
             />
@@ -148,7 +151,7 @@ const PreviewCard: React.FC<{
               title="Interview Mode"
               value={
                 interviewModeOptions.find(
-                  (item) => item?.value === interviewSettings?.interviewMode
+                  (item) => item?.value === state.interviewSettings?.interviewMode
                 )?.label
               }
             />

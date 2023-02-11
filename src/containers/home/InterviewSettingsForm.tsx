@@ -16,7 +16,7 @@ import { useData } from "./DataProvider";
 const InterviewDetailsForm: React.FC<{
   handleTab: (n: PageNumbers) => void;
 }> = ({ handleTab }) => {
-  const {setState}=useData()
+  const {state,setState}=useData()
   const {
     errors,
     touched,
@@ -38,7 +38,10 @@ const InterviewDetailsForm: React.FC<{
     }),
     onSubmit: (values) => {
       console.log({ values });
-    setState(values)
+      setState((state) => {
+        return { ...state, 'interviewSettings': values }
+      }
+      )
       alert("Form successfully submitted");
     },
   });

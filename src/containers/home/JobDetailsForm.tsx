@@ -27,7 +27,10 @@ const JobDetailsForm: React.FC<{
       }),
       onSubmit: (values) => {
         console.log({ values });
-        setState(values)
+        setState((state) => {
+          return { ...state, 'jobDetails': values }
+        }
+        )
         handleTab(2);
       },
     });
@@ -38,7 +41,12 @@ const JobDetailsForm: React.FC<{
           label="Job Title"
           placeholder="Enter job title"
           name="jobTitle"
-          onChange={handleChange}
+          onChange={(e) => {
+            handleChange(e)
+            setState((state) => {
+              return { ...state, 'jobDetails': { ...state.jobDetails, 'jobTitle': e.target.value } }
+            })
+          }}
           onBlur={handleBlur}
           value={values?.jobTitle}
           error={errors?.jobTitle}
@@ -48,7 +56,12 @@ const JobDetailsForm: React.FC<{
           label="Job Details"
           placeholder="Enter job details"
           name="jobDetails"
-          onChange={handleChange}
+          onChange={(e) => {
+            handleChange(e)
+            setState((state) => {
+              return { ...state, 'jobDetails': { ...state.jobDetails, 'jobDetails': e.target.value } }
+            })
+          }}
           onBlur={handleBlur}
           value={values?.jobDetails}
           error={errors?.jobDetails}
@@ -58,7 +71,12 @@ const JobDetailsForm: React.FC<{
           label="Job Location"
           name="jobLocation"
           placeholder="Enter job location"
-          onChange={handleChange}
+          onChange={(e) => {
+            handleChange(e)
+            setState((state) => {
+              return { ...state, 'jobDetails': { ...state.jobDetails, 'jobLocation': e.target.value } }
+            })
+          }}
           onBlur={handleBlur}
           error={errors.jobLocation}
           touched={touched.jobLocation}
